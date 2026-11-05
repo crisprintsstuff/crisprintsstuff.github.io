@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oxytocin Labs | Cris</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        oxy: {
+                            pink: '#ec4899',
+                            purple: '#a855f7',
+                            blue: '#3b82f6',
+                            dark: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Fluid Gradient Blobs */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 40px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        
+        .animate-blob {
+            animation: blob 10s infinite;
+        }
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-4000 { animation-delay: 4s; }
+        .animation-delay-6000 { animation-delay: 6s; }
+
+        /* Glassmorphism Utilities */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.15);
+            transform: translateY(-5px);
+        }
+        
+        .glass-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Organic Molecular Shapes */
+        .organic-shape {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            animation: morph 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
+            67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; }
+            100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+        }
+
+        /* Text Gradients */
+        .text-gradient {
+            background: linear-gradient(135deg, #ec4899 0%, #a855f7 50%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
+    </style>
+</head>
+<body class="antialiased selection:bg-oxy-pink selection:text-white">
+
+    <!-- Ambient Background Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-oxy-pink/20 rounded-full mix-blend-screen filter blur-[120px] animate-blob"></div>
+        <div class="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-oxy-purple/20 rounded-full mix-blend-screen filter blur-[120px] animate-blob animation-delay-2000"></div>
+        <div class="absolute bottom-[-20%] left-[20%] w-[700px] h-[700px] bg-oxy-blue/20 rounded-full mix-blend-screen filter blur-[120px] animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
+        <div class="glass border-x-0 border-t-0 border-b border-white/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-20">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-oxy-pink to-oxy-blue p-[2px]">
+                            <div class="w-full h-full bg-[#050505] rounded-full flex items-center justify-center relative overflow-hidden">
+                                <!-- Minimal molecule graphic -->
+                                <svg class="w-6 h-6 text-white absolute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="18" cy="6" r="3"></circle>
+                                    <circle cx="6" cy="18" r="3"></circle>
+                                    <circle cx="12" cy="12" r="2"></circle>
+                                    <path d="M16.5 7.5l-3 3"></path>
+                                    <path d="M10.5 13.5l-3 3"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <span class="font-display font-bold text-xl tracking-wide">Oxytocin Labs</span>
+                    </div>
+                    
+                    <!-- Desktop Nav -->
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-8">
+                            <a href="#projects" class="hover:text-oxy-pink transition-colors px-3 py-2 text-sm font-medium text-slate-300">Projects</a>
+                            <a href="#about" class="hover:text-oxy-purple transition-colors px-3 py-2 text-sm font-medium text-slate-300">About</a>
+                            <a href="https://github.com/crisprintsstuff" target="_blank" class="glass px-5 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-all flex items-center gap-2 group">
+                                <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/></svg>
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10">
+        
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center pt-20 px-4 sm:px-6 lg:px-8 relative">
+            <div class="max-w-4xl mx-auto text-center reveal">
+                <!-- Abstract Centerpiece -->
+                <div class="relative w-48 h-48 mx-auto mb-8">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-oxy-pink via-oxy-purple to-oxy-blue organic-shape opacity-80 mix-blend-screen filter blur-[2px]"></div>
+                    <div class="absolute inset-2 bg-[#050505] organic-shape flex items-center justify-center">
+                        <svg class="w-16 h-16 text-white/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <h1 class="font-display text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-6">
+                    Building the <br class="hidden sm:block"/>
+                    <span class="text-gradient">Molecules of Creation</span>
+                </h1>
+                <p class="mt-4 text-xl text-slate-400 max-w-2xl mx-auto font-light leading-relaxed mb-10">
+                    Oxytocin is the molecule of connection and flow. We engineer high-performance, open-source tools that bond your imagination directly to the digital canvas.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#projects" class="px-8 py-4 rounded-full bg-white text-black font-semibold hover:bg-slate-200 transition-colors inline-flex items-center justify-center gap-2">
+                        Explore Tools
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-24 px-4 sm:px-6 lg:px-8 relative">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">Flagship Projects</h2>
+                    <p class="text-slate-400 max-w-2xl mx-auto">High-performance software designed for artists, built for speed.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                    
+                    <!-- OxyBrush Card -->
+                    <div class="glass glass-card rounded-3xl p-1 flex flex-col reveal" style="transition-delay: 100ms;">
+                        <div class="h-64 rounded-t-[22px] bg-gradient-to-br from-slate-800 to-slate-900 relative overflow-hidden flex items-center justify-center group">
+                            <!-- Abstract 3D placeholder visual -->
+                            <div class="w-32 h-32 rounded-full border-[1px] border-oxy-pink/50 absolute group-hover:scale-110 transition-transform duration-700"></div>
+                            <div class="w-40 h-40 rounded-full border-[1px] border-oxy-purple/30 absolute group-hover:rotate-45 transition-transform duration-700"></div>
+                            <div class="w-48 h-48 rounded-full border-[1px] border-oxy-blue/20 absolute group-hover:-rotate-45 transition-transform duration-700"></div>
+                            <svg class="w-16 h-16 text-white/50 z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path></svg>
+                        </div>
+                        <div class="p-8 flex-1 flex flex-col">
+                            <h3 class="text-2xl font-display font-bold mb-3 flex items-center gap-3">
+                                OxyBrush
+                                <span class="px-2 py-1 rounded text-xs font-medium bg-oxy-pink/10 text-oxy-pink border border-oxy-pink/20">3D</span>
+                            </h3>
+                            <p class="text-slate-400 mb-6 flex-1 text-sm leading-relaxed">
+                                A high-performance 3D sculpting tool engineered for seamless workflow. Features multiresolution subdivision handling up to 5.2M triangles, rich screen-space ambient/cavity shading, 16 versatile brushes, procedural alphas, and advanced masking capabilities. Now available on Flathub.
+                            </p>
+                            
+                            <div class="flex flex-wrap gap-2 mb-8">
+                                <span class="px-3 py-1 rounded-full text-xs font-medium bg-white/5 text-slate-300">Rust</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-medium bg-white/5 text-slate-300">egui</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-medium bg-white/5 text-slate-300">5.2M Tris</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-medium bg-oxy-blue/20 text-blue-300 border border-oxy-blue/30">Flathub</span>
+                            </div>
+
+                            <a href="https://github.com/crisprintsstuff/OxyBrush" target="_blank" class="w-full py-3 rounded-xl bg-white/10 hover:bg-oxy-pink hover:text-white transition-all text-center font-semibold text-sm flex items-center justify-center gap-2">
+                                View Source
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- OxyPixel Card -->
+                    <div class="glass glass-card rounded-3xl p-1 flex flex-col reveal" style="transition-delay: 200ms;">
+                        <div class="h-64 rounded-t-[22px] bg-gradient-to-bl from-slate-800 to-slate-900 relative overflow-hidden flex items-center justify-center group">
+                             <!-- Abstract Pixel placeholder visual -->
+                             <div class="grid grid-cols-4 grid-rows-4 gap-1 transform group-hover:scale-110 transition-transform duration-500">
+                                 <div class="w-6 h-6 bg-oxy-blue/20 rounded-sm"></div>
+                                 <div class="w-6 h-6 bg-oxy-purple/40 rounded-sm"></div>
+                                 <div class="w-6 h-6 bg-transparent"></div>
+                                 <div class="w-6 h-6 bg-oxy-pink/20 rounded-sm"></div>
+                                 <div class="w-6 h-6 bg-transparent"></div>
+                                 <div class="w-6 h-6 bg-white/80 rounded-sm shadow-[0_0_15px_#fff]"></div>
+                                 <div class="w-6 h-6 bg-oxy-blue/50 rounded-sm"></div>
+                                 <div class="w-6 h-6 bg-transparent"></div>
+                                 <div class="w-6 h-6 bg-oxy-pink/40 rounded-sm"></div>
+                                 <div class="w-6 h-6 bg-transparent"></div>
+                                 <div class="w-6 h-6 bg-oxy-purple/30 rounded-sm"></div>
+                                 <div class="w-6 h-6 bg-white/10 rounded-sm"></div>
+                             </div>
+                        </div>
+                        <div class="p-8 flex-1 flex flex-col">
+                            <h3 class="text-2xl font-display font-bold mb-3 flex items-center gap-3">
+                                OxyPixel
+                                <span class="px-2 py-1 rounded text-xs font-medium bg-oxy-blue/10 text-oxy-blue border border-oxy-blue/20">2D</span>
+                            </h3>
+                            <p class="text-slate-400 mb-6 flex-1 text-sm leading-relaxed">
+                                A blazing-fast, robust 2D pixel-art editor. Powered by the efficiency of Rust, relying on the custom <code class="bg-black/30 px-1 py-0.5 rounded text-oxy-purple">oxypixel-core</code> engine and the highly responsive <code class="bg-black/30 px-1 py-0.5 rounded text-oxy-purple">egui</code> framework.
+                            </p>
+                            
+                            <div class="flex flex-wrap gap-2 mb-8">
+                                <span class="px-3 py-1 rounded-full text-xs font-medium bg-white/5 text-slate-300">Rust</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-medium bg-white/5 text-slate-300">egui</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-medium bg-white/5 text-slate-300">oxypixel-core</span>
+                            </div>
+
+                            <a href="https://github.com/crisprintsstuff/oxypixel" target="_blank" class="w-full py-3 rounded-xl bg-white/10 hover:bg-oxy-blue hover:text-white transition-all text-center font-semibold text-sm flex items-center justify-center gap-2">
+                                View Source
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+            <div class="max-w-4xl mx-auto glass rounded-[2rem] p-8 md:p-12 relative reveal">
+                <!-- Decorative background elements inside card -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-oxy-purple/20 to-transparent rounded-bl-full pointer-events-none"></div>
+                <div class="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-oxy-pink/10 to-transparent rounded-tr-full pointer-events-none"></div>
+                
+                <div class="relative z-10 flex flex-col md:flex-row gap-10 items-center">
+                    <div class="w-32 h-32 md:w-48 md:h-48 flex-shrink-0 relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-oxy-blue to-oxy-pink rounded-full blur-md opacity-50"></div>
+                        <div class="w-full h-full bg-[#111] rounded-full border-2 border-white/10 relative overflow-hidden flex items-center justify-center text-4xl font-display font-bold text-white/50">
+                            C
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">About Cris & The Lab</h2>
+                        <p class="text-slate-300 text-lg leading-relaxed mb-6">
+                            Oxytocin is the chemical foundation of bonding and human connection. At Oxytocin Labs, that same principle is applied to software development. 
+                        </p>
+                        <p class="text-slate-400 leading-relaxed mb-8">
+                            The mission is to build robust, community-driven, open-source tools that seamlessly connect the artist's imagination to the digital space. Whether sculpting in three dimensions or carefully placing pixels in two, the tools you use should feel like a natural extension of your mind.
+                        </p>
+                        <a href="https://github.com/crisprintsstuff" target="_blank" class="inline-flex items-center gap-2 text-oxy-pink hover:text-oxy-purple transition-colors font-medium">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/></svg>
+                            Follow Cris on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-white/10 bg-[#050505]/80 backdrop-blur-lg pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-oxy-pink to-oxy-blue p-[1px] mb-6">
+                <div class="w-full h-full bg-[#050505] rounded-full flex items-center justify-center">
+                    <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="18" cy="6" r="3"></circle>
+                        <circle cx="6" cy="18" r="3"></circle>
+                        <circle cx="12" cy="12" r="2"></circle>
+                        <path d="M16.5 7.5l-3 3"></path>
+                        <path d="M10.5 13.5l-3 3"></path>
+                    </svg>
+                </div>
+            </div>
+            <p class="text-slate-500 text-sm mb-4">Connecting imagination with reality.</p>
+            <div class="flex gap-4 mb-8">
+                <a href="https://github.com/crisprintsstuff/OxyBrush" target="_blank" class="text-slate-400 hover:text-white transition-colors text-sm">OxyBrush</a>
+                <span class="text-slate-700">•</span>
+                <a href="https://github.com/crisprintsstuff/oxypixel" target="_blank" class="text-slate-400 hover:text-white transition-colors text-sm">OxyPixel</a>
+            </div>
+            <p class="text-slate-600 text-xs">
+                &copy; <script>document.write(new Date().getFullYear())</script> Oxytocin Labs. Open Source. Built by Cris.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Scroll Reveal Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+
+        // Navbar blur effect on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg', 'bg-[#050505]/50', 'backdrop-blur-md');
+            } else {
+                navbar.classList.remove('shadow-lg', 'bg-[#050505]/50', 'backdrop-blur-md');
+            }
+        });
+    </script>
+</body>
+</html>
